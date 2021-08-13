@@ -1,0 +1,48 @@
+class UI {
+  constructor() {
+    this.profile = document.querySelector("#profile");
+  }
+  showProfile(user) {
+    this.clearAlert();
+    this.profile.innerHTML = `<div class="card card-body mb-9">
+        <div class="row">
+        <div class="col-md-3">
+        <img class="img-fluid mb-2" src="${user.avatar_url}">
+        <a href="${user.html_url}"target ="_blank" class ="btn btn-primary btn-block mb-4">Viwe Profile</a>
+        </div>
+        <div class="col-md-9">
+        <span class="badge badge-primary p-2 mr-2 mt-3">Public Repos: ${user.public_repos}</span>
+        <span class="badge badge-secondary p-2 mr-2 mt-3">Public Gists: ${user.public_gists}</span>
+        <span class="badge badge-success p-2 mr-2 mt-3">Followers: ${user.followers}</span>
+        <span class="badge badge-info p-2 mr-2 mt-3">Following: ${user.following}</span>
+        <br><br>
+        <ul class="list-group">
+        <li class="list-group-item text-secondary">Company:${user.company}</li>
+        <li class="list-group-item text-secondary">Website/blog:${user.blog}</li>
+        <li class="list-group-item text-secondary">Location:${user.location}</li>
+        <li class="list-group-item text-secondary">Member Since:${user.created_at}</li>
+        </ul>
+        </div>
+        </div>
+        </div>`;
+  }
+  clearProfile(){
+      this.profile.innerHTML=""
+  }
+  showAlert(message,className){
+      this.clearAlert();
+      this.clearProfile();
+      let div = document.createElement('div');
+      div.className = className;
+      div.appendChild(document.createTextNode(message));
+      let container = document.querySelector('.searchContainer');
+      let search = document.querySelector('.search');
+      container.insertBefore(div, search);
+  }
+  clearAlert(){
+      let currentAlert = document.querySelector('.alert');
+      if(currentAlert){
+          currentAlert.remove();
+      }
+  }
+}
